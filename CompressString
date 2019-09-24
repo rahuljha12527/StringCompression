@@ -1,0 +1,62 @@
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+// input - given string
+// You need to update in the given string itself i.e. in input. No need to return or print.
+#include<cstring>
+void stringCompression(char input[]) {
+    
+    
+    int i = 0;
+    while(input[i] != '\0') {
+        int count = 1;
+        int j = i + 1;
+        
+        //Checking the repeated charecters
+        while(input[j] == input[i]) {
+            count++;
+            j++;
+        }
+        
+        //If character does not repeat
+        if(count == 1) {
+            i++;
+            continue;
+        } 
+        
+        //If character repeats
+        
+        //Setting the count as character as the next element
+        input[i + 1] = '0' + count;
+        
+        //Taking care of the rest of the repeated elements
+        while(input[i + 2] == input[i]) {
+            int j = i + 2;
+            
+            //Left shifting the elements
+            while(input[j] != '\0') {
+                input[j] = input[j + 1];
+                j++;
+            }
+        }
+        i += 2;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+int main() {
+    char input[1000];
+    cin.getline(input, 1000);
+    stringCompression(input);
+    cout << input << endl;
+}
